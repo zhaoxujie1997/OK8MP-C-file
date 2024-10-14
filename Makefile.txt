@@ -1,0 +1,11 @@
+# Makefile for PCIe EP Driver
+obj-m += pci_ep_driver.o  # 要编译的模块名称
+
+# Linux kernel source path
+KDIR := /lib/modules/$(shell uname -r)/build  # 获取当前内核的构建路径
+
+all:
+	make -C $(KDIR) M=$(PWD) modules  # 调用内核构建系统进行编译
+
+clean:
+	make -C $(KDIR) M=$(PWD) clean  # 清理编译生成的文件
